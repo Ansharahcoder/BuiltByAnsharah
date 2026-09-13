@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio | Ansharah Dev</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="text-sky-600 dark:text-sky-400">&lt;</span>Ansharah<span class="text-sky-600 dark:text-sky-400">Dev/&gt;</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+               <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">HOME</a>
+                <a href="bio.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">BIO</a>
+                <a href="timeline.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TIME-LINE</a>
+                <a href="toolbox.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TOOL-BOX</a>
+                <a href="showcase.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">SHOW_CASE</a>
+                <a href="reach-me.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">REACH_ME</a>
+                <a href="my-accounts.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">MY_ACCOUNT</a>
+            </nav>
+
+            <!-- Actions (Theme Toggle & Back Button) -->
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:scale-105 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- Back to Home Button -->
+                <a href="index.html" class="hidden sm:inline-flex px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/20 transition-all items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Main Site
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-6 py-4 space-y-4">
+            <a href="index.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">HOME</a>
+            <a href="bio.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">BIO</a>
+            <a href="timeline.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TIME-LINE</a>
+            <a href="toolbox.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TOOL-BOX</a>
+            <a href="showcase.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">SHOW_CASE</a>
+                <a href="reach-me.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">REACH_ME</a>
+                    <a href="my-accounts.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">MY_ACCOUNT</a>
+            <button onclick="toggleModal(true)" class="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-xl text-sm font-semibold">
+                <i class="fa-solid fa-file-arrow-down"></i> Resume
+            </button>
+        </div>
+    </header>
+
+    <!-- BIO CONTENT SECTION -->
+    <main class="pt-32 pb-20 flex-grow">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <!-- Header Title -->
+            <div class="text-center space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950/80 border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-xs font-bold uppercase tracking-wider">
+                    Full-Stack MERN Developer
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">
+                    Biography & Background
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+                    Learn more about my development journey, problem-solving mindset, and personal philosophy.
+                </p>
+            </div>
+
+            <!-- Profile Summary Card -->
+            <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                    <i class="fa-solid fa-user-gear text-sky-600 dark:text-sky-400"></i> Who Am I?
+                </h2>
+                <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+                    <p>
+                        My name is <strong class="text-slate-900 dark:text-white font-semibold">Ansharah</strong>. I am a passionate Full-Stack Web Developer dedicated to designing and building clean, modern, and user-centric digital web solutions.
+                    </p>
+                    <p>
+                        My core technical focus centers on the <strong>MERN Stack</strong> (MongoDB, Express.js, React.js, and Node.js). I enjoy translating Figma layout concepts into interactive frontend applications while engineering robust backend RESTful APIs for database management.
+                    </p>
+                    <p>
+                        Whether working on frontend UI layout design or structuring server-side business logic, my primary goal is writing scalable code and ensuring seamless web responsiveness across desktop and mobile devices.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <div class="w-12 h-12 bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Frontend Precision</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Proficient in React.js, JavaScript (ES6+), HTML5, CSS3, and Tailwind CSS for creating responsive UI layouts.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Backend APIs</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Skilled in building Express.js REST APIs, managing Node.js servers, and structuring MongoDB schemas.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Modern Workflow</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Experienced with Figma UI wireframing, Git & GitHub version control, Postman testing, and cloud deployment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Development Philosophy & Values -->
+            <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                    <i class="fa-solid fa-lightbulb text-amber-500"></i> Development Philosophy
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i> Continuous Learning
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Web development constantly evolves. I regularly explore new tools, modern libraries, and architectural best practices.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i> Clean & Maintainable Code
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Writing clear, modular, and reusable code is essential for scalable long-term software development.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i> User-Centric Focus
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            A great application must be intuitive, fast, and accessible across all screen sizes and mobile browsers.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-base flex items-center gap-2">
+                            <i class="fa-solid fa-check-circle text-sky-500"></i> Structured Problem-Solving
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Breaking complex technical challenges down into manageable steps for efficient coding and debugging.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>&copy; <span id="year"></span> Ansharah Dev. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR THEME TOGGLE & MOBILE MENU -->
+    <script>
+        // Set Current Year in Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Switcher Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+            }
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

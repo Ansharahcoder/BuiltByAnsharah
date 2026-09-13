@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolbox & Skill Matrix | Ansharah Dev</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="text-sky-600 dark:text-sky-400">&lt;</span>Ansharah<span class="text-sky-600 dark:text-sky-400">Dev/&gt;</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                  <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">HOME</a>
+                <a href="bio.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">BIO</a>
+                <a href="timeline.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TIME-LINE</a>
+                <a href="toolbox.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TOOL-BOX</a>
+                <a href="showcase.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">SHOW_CASE</a>
+                <a href="reach-me.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">REACH_ME</a>
+                <a href="my-accounts.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">MY_ACCOUNT</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:scale-105 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="index.html" class="hidden sm:inline-flex px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/20 transition-all items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Main Hub
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-6 py-4 space-y-4">
+            <a href="index.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">HOME</a>
+            <a href="bio.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">BIO</a>
+            <a href="timeline.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TIME-LINE</a>
+            <a href="toolbox.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TOOL-BOX</a>
+            <a href="showcase.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">SHOW_CASE</a>
+                <a href="reach-me.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">REACH_ME</a>
+                    <a href="my-accounts.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">MY_ACCOUNT</a>
+            <button onclick="toggleModal(true)" class="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-xl text-sm font-semibold">
+                <i class="fa-solid fa-file-arrow-down"></i> Resume
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN TOOLBOX CONTENT -->
+    <main class="pt-32 pb-20 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- Header Title -->
+            <div class="text-center space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> Technical Ecosystem
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">
+                    Developer Toolbox
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+                    A comprehensive overview of programming languages, frameworks, databases, and workflow tools I use to build MERN stack applications.
+                </p>
+            </div>
+
+            <!-- TOOLBOX CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: Frontend Technologies -->
+                <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-sky-100 dark:bg-sky-950/80 rounded-2xl flex items-center justify-center text-sky-500 text-2xl">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Frontend Stack</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">UI Rendering & Styling</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-html5 text-orange-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">HTML5</h4>
+                                <p class="text-[10px] text-slate-500">Semantic Structure</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-css3-alt text-blue-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">CSS3 & Tailwind</h4>
+                                <p class="text-[10px] text-slate-500">Responsive Layouts</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-js text-yellow-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">JavaScript (ES6+)</h4>
+                                <p class="text-[10px] text-slate-500">Dynamic Logic</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-react text-sky-400 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">React.js</h4>
+                                <p class="text-[10px] text-slate-500">Component State & Hooks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Backend Architecture -->
+                <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-950/80 rounded-2xl flex items-center justify-center text-emerald-500 text-2xl">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Backend Stack</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Server Logic & REST APIs</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-node-js text-green-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Node.js</h4>
+                                <p class="text-[10px] text-slate-500">Runtime Environment</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-gear text-slate-400 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Express.js</h4>
+                                <p class="text-[10px] text-slate-500">API Endpoint Routing</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-lock text-emerald-400 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">RESTful Services</h4>
+                                <p class="text-[10px] text-slate-500">JSON API Integration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Database Systems -->
+                <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-950/80 rounded-2xl flex items-center justify-center text-green-500 text-2xl">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Databases</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Data Storage & Models</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-database text-green-600 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">MongoDB</h4>
+                                <p class="text-[10px] text-slate-500">NoSQL Collections</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-network-wired text-indigo-400 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Mongoose ODM</h4>
+                                <p class="text-[10px] text-slate-500">Schema Validation</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-cloud text-sky-400 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">MongoDB Atlas</h4>
+                                <p class="text-[10px] text-slate-500">Cloud Hosting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Tools & Deployment -->
+                <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-950/80 rounded-2xl flex items-center justify-center text-purple-500 text-2xl">
+                        <i class="fa-solid fa-toolbox"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Tools & Workflow</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Design, Testing & Deployment</p>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-figma text-pink-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Figma</h4>
+                                <p class="text-[10px] text-slate-500">UI/UX Layout Design</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-brands fa-github text-slate-700 dark:text-slate-200 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Git & GitHub</h4>
+                                <p class="text-[10px] text-slate-500">Version Control</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-paper-plane text-orange-600 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Postman</h4>
+                                <p class="text-[10px] text-slate-500">API Endpoint Testing</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl flex items-center gap-3">
+                            <i class="fa-solid fa-cloud-arrow-up text-sky-500 text-2xl"></i>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-white">Vercel & Netlify</h4>
+                                <p class="text-[10px] text-slate-500">Application Hosting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>&copy; <span id="year"></span> Ansharah Dev. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+            }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
