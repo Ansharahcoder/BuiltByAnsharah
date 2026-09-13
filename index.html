@@ -1,56 +1,718 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ansharah | Full-Stack MERN Developer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansharah Dev | Full-Stack MERN Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
 
-  <header>
-    <a href="index.html" class="logo">ANSHARAH<span>.DEV_</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="skills.html">Skills</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </header>
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-extrabold tracking-tight flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="text-sky-600 dark:text-sky-400">&lt;</span>Ansharah<span class="text-sky-600 dark:text-sky-400">Dev/&gt;</span>
+            </a>
 
-  <div class="container">
-    <div class="card" style="padding: 60px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-      <div style="flex: 1; min-width: 300px;">
-        <span class="badge" style="font-size: 13px; padding: 6px 16px; border-radius: 20px;">🚀 AVAILABLE FOR HIRE</span>
-        <h1 style="font-size: 50px; margin-top: 15px;">Hi, I'm <span class="gold-text">Ansharah</span></h1>
-        <h2 style="color: #c4b5a5; font-weight: 500; font-size: 24px; margin-top: 5px;">Full-Stack MERN Architect & UI Engineer</h2>
-        <p style="margin-top: 20px; font-size: 16px; color: #a8988a;">
-          I design and build ultra-fast web applications, enterprise REST APIs, and scalable cloud databases. Turning complex problems into smooth digital experiences.
-        </p>
-        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-          <a href="projects.html" class="btn-gold">Explore Projects ➔</a>
-          <a href="contact.html" class="btn-outline">Contact Me</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">About</a>
+                <a href="#journey" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Experience & Roadmap</a>
+                <a href="#skills" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Skills & Tools</a>
+                <a href="#projects" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:scale-105 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- CV Modal Open Button -->
+                <button onclick="toggleModal(true)" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40">
+                    <i class="fa-solid fa-file-arrow-down"></i> Resume
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </div>
-      </div>
 
-      <div style="text-align: center; flex: 0.8; min-width: 280px;">
-        <div class="card" style="display: inline-block; padding: 40px; border-radius: 50%;">
-          <div style="font-size: 100px;">💻</div>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-6 py-4 space-y-4">
+            <a href="#about" class="block text-slate-700 dark:text-slate-200 font-medium py-1">About</a>
+            <a href="#journey" class="block text-slate-700 dark:text-slate-200 font-medium py-1">Experience & Roadmap</a>
+            <a href="#skills" class="block text-slate-700 dark:text-slate-200 font-medium py-1">Skills & Tools</a>
+            <a href="#projects" class="block text-slate-700 dark:text-slate-200 font-medium py-1">Projects</a>
+            <a href="#contact" class="block text-slate-700 dark:text-slate-200 font-medium py-1">Contact</a>
+            <button onclick="toggleModal(true)" class="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-xl text-sm font-semibold">
+                <i class="fa-solid fa-file-arrow-down"></i> Resume
+            </button>
         </div>
-      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen pt-32 pb-20 flex items-center justify-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Column: Intro -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-100 dark:bg-sky-950/80 border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Full-Stack MERN Developer • 2026 Structured Journey
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                    Hi, I'm <span class="text-sky-600 dark:text-sky-400">Ansharah</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed">
+                    A dedicated Full-Stack Developer with a structured, hands-on learning roadmap in 2026—progressing month-by-month from responsive frontend development to scalable MERN stack web applications.
+                </p>
+
+                <!-- Tech Badges Grid -->
+                <div class="pt-2 flex flex-wrap gap-2 justify-center lg:justify-start text-xs font-semibold">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-brands fa-html5 text-orange-500"></i> HTML5
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-brands fa-css3-alt text-blue-500"></i> CSS3
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-brands fa-js text-yellow-500"></i> JavaScript ES6+
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-brands fa-react text-sky-400"></i> React.js
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-brands fa-node-js text-green-500"></i> Node.js
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-server text-emerald-400"></i> Express.js
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-database text-green-600"></i> MongoDB
+                    </span>
+                </div>
+
+                <!-- CTA & Social Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-semibold shadow-lg shadow-sky-500/25 transition-all text-center">
+                        View Projects
+                    </a>
+                    <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl font-semibold transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-github text-lg"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/ansharah-dev" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Live Code Terminal Card -->
+            <div class="lg:col-span-5">
+                <div class="rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-5 overflow-hidden">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono">ansharah-2026-roadmap.js</span>
+                    </div>
+                    <pre class="pt-4 text-xs sm:text-sm font-mono leading-relaxed text-slate-300 overflow-x-auto">
+<span class="text-purple-400">const</span> <span class="text-yellow-300">developer</span> = {
+  <span class="text-sky-300">name</span>: <span class="text-emerald-300">'Ansharah'</span>,
+  <span class="text-sky-300">year</span>: <span class="text-emerald-300">'2026'</span>,
+  <span class="text-sky-300">phase1</span>: <span class="text-emerald-300">'3 Months - HTML5, CSS3 & Responsive UI'</span>,
+  <span class="text-sky-300">phase2</span>: <span class="text-emerald-300">'3 Months - JS ES6+ & Frontend Dev'</span>,
+  <span class="text-sky-300">phase3</span>: <span class="text-emerald-300">'3 Months - MongoDB & Express Backend'</span>,
+  <span class="text-sky-300">phase4</span>: <span class="text-emerald-300">'3 Months - React.js & Node.js MERN Stack'</span>,
+  <span class="text-sky-300">github</span>: <span class="text-emerald-300">'https://github.com/ansharah-dev'</span>,
+  <span class="text-sky-300">linkedin</span>: <span class="text-emerald-300">'https://linkedin.com/in/ansharah-dev'</span>,
+  <span class="text-sky-300">status</span>: <span class="text-amber-400">'Full-Stack Developer'</span>
+};
+
+<span class="text-purple-400">console</span>.<span class="text-blue-400">log</span>(<span class="text-emerald-300">"Structured practical experience complete!"</span>);
+</pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="py-20 bg-slate-100/60 dark:bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">About Me</h2>
+                <div class="w-16 h-1 bg-sky-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Text Intro -->
+                <div class="lg:col-span-7 space-y-6 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+                    <p class="text-lg font-medium text-slate-800 dark:text-slate-100">
+                        Hello! I am <strong class="text-sky-600 dark:text-sky-400">Ansharah</strong>, a dedicated Full-Stack Web Developer.
+                    </p>
+                    <p>
+                        Throughout 2026, I completed a structured, hands-on 3-month modular development path. 
+                    </p>
+                    <p>
+                        I spent the first 3 months building a solid foundation in HTML5, CSS3, and Responsive Web Design. Over the next 3 months, I mastered JavaScript (ES6+), DOM manipulation, and dynamic client-side logic to step into Frontend Development. Following this, I devoted 3 months to backend API development with MongoDB and Express.js, culminating in 3 months of React.js and Node.js integration to become a complete Full-Stack MERN Developer.
+                    </p>
+                    <p>
+                        I regularly use <strong>Figma</strong> for UI wireframing, <strong>Postman</strong> for API testing, and <strong>Git & GitHub</strong> for version control.
+                    </p>
+                </div>
+
+                <!-- Highlight Cards Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-calendar-check text-3xl text-sky-600 dark:text-sky-400"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">2026</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Structured Roadmap Year</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-clock font-extrabold text-3xl text-emerald-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Structured</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">3-Month Modular Phases</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-code text-3xl text-purple-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Frontend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">UI & JavaScript Core</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2">
+                        <i class="fa-solid fa-layer-group text-3xl text-amber-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Full Stack</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Complete MERN Mastery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2026 EXPERIENCE & ROADMAP SECTION -->
+    <section id="journey" class="py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">2026 Structured Roadmap & Experience</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Sequential Month-by-Month Development Training & Growth</p>
+                <div class="w-16 h-1 bg-sky-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Vertical Timeline -->
+            <div class="relative border-l-2 border-sky-500/30 ml-4 sm:ml-32 space-y-12">
+                
+                <!-- Phase 1: HTML & CSS (3 Months) -->
+                <div class="relative pl-8 sm:pl-10">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-orange-500 ring-4 ring-orange-100 dark:ring-orange-950"></span>
+                    <span class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide">3 Months Phase</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">HTML5, CSS3 & Responsive UI</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-orange-100 dark:bg-orange-950 text-orange-600 dark:text-orange-300 rounded-md">Foundational</span>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Web Design Fundamentals & Semantic Layouts</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Spent the first 3 months mastering Semantic HTML5, CSS Flexbox, CSS Grid, and Media Queries to design pixel-perfect, mobile-first responsive web templates.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 2: JavaScript & Frontend (3 Months) -->
+                <div class="relative pl-8 sm:pl-10">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-yellow-500 ring-4 ring-yellow-100 dark:ring-yellow-950"></span>
+                    <span class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 uppercase tracking-wide">3 Months Phase</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">JavaScript (ES6+) & DOM Manipulation</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-300 rounded-md">Frontend Developer</span>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Interactive Logic, Fetch API & Client-side Scripting</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Focused the next 3 months on JS ES6+ features (Promises, Async/Await, ES Modules) and dynamic DOM manipulation, establishing competence as a <strong>Frontend Developer</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 3: MongoDB & Express.js (3 Months) -->
+                <div class="relative pl-8 sm:pl-10">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950"></span>
+                    <span class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">3 Months Phase</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">MongoDB & Express.js Backend Architecture</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 rounded-md">Backend Development</span>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">REST APIs, Schema Design & Database CRUD</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Dedicated 3 months to MongoDB NoSQL database modeling, Mongoose schemas, Express.js RESTful API endpoints, and thorough testing using Postman.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Phase 4: React.js & Node.js MERN (3 Months) -->
+                <div class="relative pl-8 sm:pl-10">
+                    <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-600 ring-4 ring-sky-100 dark:ring-sky-950"></span>
+                    <span class="sm:absolute sm:-left-32 sm:top-1 text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wide">3 Months Phase</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">React.js & Node.js MERN Stack Integration</h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-300 rounded-md">Full-Stack Developer</span>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Component State, React Hooks & Server Integration</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            In the final 3 months, combined React.js functional components, hooks, and state management with Node.js server environments to become a <strong>Full-Stack MERN Developer</strong>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS & TOOLS SECTION -->
+    <section id="skills" class="py-20 bg-slate-100/60 dark:bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Skills & Tools</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Comprehensive stack mastered through structured hands-on modules</p>
+                <div class="w-16 h-1 bg-sky-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Frontend Column -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <i class="fa-solid fa-laptop-code text-2xl text-sky-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Frontend Stack</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5 & Semantic UI</span>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400">Core</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-css3-alt text-blue-500"></i> CSS3 & Tailwind CSS</span>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400">Responsive</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-js text-yellow-500"></i> JavaScript (ES6+)</span>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400">DOM Core</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-react text-sky-400"></i> React.js</span>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400">Hooks & State</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Backend Column -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <i class="fa-solid fa-server text-2xl text-emerald-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Backend & Database</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-node-js text-green-500"></i> Node.js</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">Runtime</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-gear text-slate-400"></i> Express.js</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">REST APIs</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-database text-green-600"></i> MongoDB</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">NoSQL DB</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-indigo-400"></i> Mongoose</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">ODM Schemas</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tools Column -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <i class="fa-solid fa-screwdriver-wrench text-2xl text-purple-500"></i>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Tools & Version Control</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-figma text-pink-500"></i> Figma</span>
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400">UI Design</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-brands fa-github text-slate-700 dark:text-slate-200"></i> Git & GitHub</span>
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400">Version Control</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-paper-plane text-orange-600"></i> Postman</span>
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400">API Testing</span>
+                        </li>
+                        <li class="flex items-center justify-between text-sm font-medium">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-up text-sky-500"></i> Vercel / Netlify</span>
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400">Deployment</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SHOWCASE SECTION -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Projects Showcase</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Hands-on web applications developed during training modules</p>
+                <div class="w-16 h-1 bg-sky-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterProjects('all')" class="filter-btn active-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-sky-600 text-white">All Projects</button>
+                <button onclick="filterProjects('mern')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Full Stack MERN</button>
+                <button onclick="filterProjects('frontend')" class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Frontend JavaScript</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: MERN E-Commerce -->
+                <div class="project-card mern glass-card rounded-2xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2">
+                    <div class="h-48 bg-slate-800 relative flex items-center justify-center p-4">
+                        <i class="fa-solid fa-cart-shopping text-6xl text-sky-400/30"></i>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-sky-600 text-white text-xs font-bold rounded-full">Phase 4 Capstone</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">MERN E-Commerce Application</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            A complete full-stack web application featuring React components, Express API backend, and MongoDB database integration.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400">
+                            <span class="px-2.5 py-1 bg-sky-100 dark:bg-sky-950/80 rounded-md">React</span>
+                            <span class="px-2.5 py-1 bg-sky-100 dark:bg-sky-950/80 rounded-md">Node.js</span>
+                            <span class="px-2.5 py-1 bg-sky-100 dark:bg-sky-950/80 rounded-md">Express</span>
+                            <span class="px-2.5 py-1 bg-sky-100 dark:bg-sky-950/80 rounded-md">MongoDB</span>
+                        </div>
+                        <div class="pt-2 flex items-center gap-4">
+                            <a href="#" class="text-sm font-semibold text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:underline flex items-center gap-1">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Express MongoDB Task API -->
+                <div class="project-card mern glass-card rounded-2xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2">
+                    <div class="h-48 bg-slate-800 relative flex items-center justify-center p-4">
+                        <i class="fa-solid fa-server text-6xl text-emerald-400/30"></i>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">Phase 3 Backend</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">MongoDB RESTful Task Manager</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Backend REST API connected to MongoDB database featuring schema validation, CRUD operations, and Postman testing.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                            <span class="px-2.5 py-1 bg-emerald-100 dark:bg-emerald-950/80 rounded-md">Express.js</span>
+                            <span class="px-2.5 py-1 bg-emerald-100 dark:bg-emerald-950/80 rounded-md">MongoDB</span>
+                            <span class="px-2.5 py-1 bg-emerald-100 dark:bg-emerald-950/80 rounded-md">Postman</span>
+                        </div>
+                        <div class="pt-2 flex items-center gap-4">
+                            <a href="#" class="text-sm font-semibold text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:underline flex items-center gap-1">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Responsive JavaScript Interactive UI -->
+                <div class="project-card frontend glass-card rounded-2xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2">
+                    <div class="h-48 bg-slate-800 relative flex items-center justify-center p-4">
+                        <i class="fa-solid fa-window-restore text-6xl text-purple-400/30"></i>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">Phase 1 & 2 Frontend</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Interactive JS Web Layout</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Figma UI wireframe converted into a responsive web layout using HTML5, CSS3, Tailwind CSS, and DOM manipulation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                            <span class="px-2.5 py-1 bg-purple-100 dark:bg-purple-950/80 rounded-md">HTML5/CSS3</span>
+                            <span class="px-2.5 py-1 bg-purple-100 dark:bg-purple-950/80 rounded-md">JavaScript</span>
+                            <span class="px-2.5 py-1 bg-purple-100 dark:bg-purple-950/80 rounded-md">Figma Layout</span>
+                        </div>
+                        <div class="pt-2 flex items-center gap-4">
+                            <a href="#" class="text-sm font-semibold text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:underline flex items-center gap-1">
+                                <i class="fa-brands fa-github"></i> GitHub Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-slate-100/60 dark:bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Get In Touch</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Open for Full-Stack, Frontend & MERN Developer opportunities</p>
+                <div class="w-16 h-1 bg-sky-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950 flex items-center justify-center text-sky-600 dark:text-sky-400 text-xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-slate-400">Email</h4>
+                            <a href="mailto:ansharah.dev@example.com" class="text-base font-semibold text-slate-900 dark:text-white hover:text-sky-600">ansharah.dev@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950 flex items-center justify-center text-purple-600 dark:text-purple-400 text-xl">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-slate-400">GitHub Profile</h4>
+                            <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-slate-900 dark:text-white hover:text-purple-600">github.com/ansharah-dev</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold uppercase text-slate-400">LinkedIn Profile</h4>
+                            <a href="https://linkedin.com/in/ansharah-dev" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-slate-900 dark:text-white hover:text-blue-600">linkedin.com/in/ansharah-dev</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 glass-card p-8 rounded-2xl">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Your Name</label>
+                                <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Your Email</label>
+                                <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Subject</label>
+                            <input type="text" required placeholder="Developer Opportunity Inquiry" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Message</label>
+                            <textarea rows="4" required placeholder="Hi Ansharah, I reviewed your 2026 developer portfolio..." class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-semibold shadow-lg shadow-sky-500/25 transition-all">
+                            Send Message
+                        </button>
+                        <p id="formFeedback" class="text-center text-sm font-semibold text-emerald-500 hidden pt-2">Thank you! Your message has been sent.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400 space-y-3">
+        <div class="flex justify-center gap-6 text-lg">
+            <a href="https://github.com/ansharah-dev" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600 transition-colors"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/ansharah-dev" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <p>&copy; <span id="year"></span> Ansharah Dev. All rights reserved.</p>
+    </footer>
+
+    <!-- RESUME MODAL -->
+    <div id="resumeModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card max-w-lg w-full rounded-2xl p-6 space-y-6 relative border border-slate-700">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-100 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="text-center space-y-2">
+                <i class="fa-solid fa-file-pdf text-4xl text-sky-500"></i>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Ansharah - Full Stack Resume</h3>
+                <p class="text-xs text-slate-500">Full-Stack MERN Developer (2026 Roadmap)</p>
+            </div>
+
+            <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-xl text-xs space-y-2 text-slate-600 dark:text-slate-300">
+                <p><strong>2026 Structured Journey:</strong></p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400">
+                    <li>3 Months: HTML5, CSS3 & Responsive Design</li>
+                    <li>3 Months: JavaScript (ES6+) Frontend Developer</li>
+                    <li>3 Months: MongoDB & Express.js REST APIs</li>
+                    <li>3 Months: React.js & Node.js Full-Stack MERN</li>
+                </ul>
+                <p class="pt-2"><strong>Links:</strong></p>
+                <p>GitHub: <a href="https://github.com/ansharah-dev" target="_blank" class="text-sky-500 hover:underline">github.com/ansharah-dev</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/ansharah-dev" target="_blank" class="text-sky-500 hover:underline">linkedin.com/in/ansharah-dev</a></p>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="alert('Downloading CV...')" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold transition-all">
+                    Download CV
+                </button>
+                <button onclick="toggleModal(false)" class="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-semibold">
+                    Close
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="grid-4" style="margin-top: 40px;">
-      <div class="card" style="text-align: center;"><h1 class="gold-text">4+</h1><p>Years Experience</p></div>
-      <div class="card" style="text-align: center;"><h1 class="gold-text">35+</h1><p>Projects Completed</p></div>
-      <div class="card" style="text-align: center;"><h1 class="gold-text">600+</h1><p>APIs Written</p></div>
-      <div class="card" style="text-align: center;"><h1 class="gold-text">100%</h1><p>Client Satisfaction</p></div>
-    </div>
-  </div>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set Year in Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-  <footer>© 2026 Ansharah | All Rights Reserved</footer>
+        // Theme Switcher Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Project Filter
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white');
+                btn.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            });
+
+            event.target.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            event.target.classList.add('bg-sky-600', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Contact Form Submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            feedback.classList.remove('hidden');
+            event.target.reset();
+            setTimeout(() => feedback.classList.add('hidden'), 5000);
+        }
+
+        // Resume Modal Toggle
+        function toggleModal(show) {
+            const modal = document.getElementById('resumeModal');
+            if (show) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
