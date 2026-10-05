@@ -15,191 +15,238 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* Premium Glassmorphism */
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(229, 231, 235, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
         .dark .glass-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(51, 65, 85, 0.6);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(30, 41, 59, 0.7);
         }
+
+        /* Hover & Glow Animations */
         .account-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .account-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 40px -15px rgba(14, 165, 233, 0.15);
         }
         .dark .account-card:hover {
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Custom Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+    <!-- Ambient Glowing Background Blobs -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-10 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
     <!-- NAVBAR -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b border-slate-200 dark:border-slate-800">
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b border-slate-200/80 dark:border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-extrabold tracking-tight flex items-center gap-2 text-slate-900 dark:text-white">
-                <span class="text-sky-600 dark:text-sky-400">&lt;</span>Ansharah<span class="text-sky-600 dark:text-sky-400">Dev/&gt;</span>
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight flex items-center gap-1.5 text-slate-900 dark:text-white group">
+                <span class="text-sky-500 group-hover:-translate-x-0.5 transition-transform">&lt;</span>Ansharah<span class="text-sky-500 group-hover:translate-x-0.5 transition-transform">Dev/&gt;</span>
             </a>
 
-             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                <a href="index.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">HOME</a>
-                <a href="bio.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">BIO</a>
-                <a href="timeline.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TIME-LINE</a>
-                <a href="toolbox.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">TOOL-BOX</a>
-                <a href="showcase.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">SHOW_CASE</a>
-                <a href="reach-me.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">REACH_ME</a>
-                <a href="my-accounts.html" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">MY_ACCOUNT</a>
+            <!-- ALL NAVIGATION LINKS UNIFORM & MATCHING -->
+            <nav class="hidden md:flex items-center gap-7 text-xs font-bold tracking-wider text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">HOME</a>
+                <a href="bio.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">BIO</a>
+                <a href="timeline.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">TIME-LINE</a>
+                <a href="toolbox.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">TOOL-BOX</a>
+                <a href="showcase.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">SHOW_CASE</a>
+                <a href="reach-me.html" class="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">REACH_ME</a>
+                <a href="my-accounts.html" class="text-sky-500 dark:text-sky-400 hover:text-sky-600 dark:hover:text-sky-300 transition-colors">MY_ACCOUNT</a>
             </nav>
 
-
-            <div class="flex items-center gap-4">
-                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:scale-105 transition-all">
-                    <i id="themeIcon" class="fa-solid fa-sun text-lg text-yellow-400"></i>
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:scale-105 active:scale-95 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-sun text-lg text-amber-400"></i>
                 </button>
-                <a href="index.html" class="hidden sm:inline-flex px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/20 transition-all items-center gap-2">
-                    <i class="fa-solid fa-house"></i> Main Hub
+                <a href="index.html" class="hidden sm:inline-flex px-5 py-2.5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/25 transition-all items-center gap-2 active:scale-95">
+                    <i class="fa-solid fa-house text-xs"></i> Main Hub
                 </a>
-                <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300 text-xl">
+                <button id="mobileMenuBtn" aria-label="Open Menu" class="md:hidden p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 text-xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
 
-         <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-6 py-4 space-y-4">
-            <a href="index.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1 text-center">HOME</a>
-            <a href="bio.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">BIO</a>
-            <a href="timeline.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TIME-LINE</a>
-            <a href="toolbox.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">TOOL-BOX</a>
-            <a href="showcase.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">SHOW_CASE</a>
-                <a href="reach-me.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">REACH_ME</a>
-                    <a href="my-accounts.html" class="block text-slate-700 dark:text-slate-200 font-medium py-1">MY_ACCOUNT</a>
-            <button onclick="toggleModal(true)" class="w-full flex items-center justify-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-xl text-sm font-semibold">
-                <i class="fa-solid fa-file-arrow-down"></i> Resume
-            </button>
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl px-6 py-6 space-y-3 font-semibold text-sm">
+            <a href="index.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">HOME</a>
+            <a href="bio.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">BIO</a>
+            <a href="timeline.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">TIME-LINE</a>
+            <a href="toolbox.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">TOOL-BOX</a>
+            <a href="showcase.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">SHOW_CASE</a>
+            <a href="reach-me.html" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-sky-500">REACH_ME</a>
+            <a href="my-accounts.html" class="block py-2 text-sky-500 dark:text-sky-400 font-bold">MY_ACCOUNT</a>
         </div>
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="pt-32 pb-20 flex-grow">
+    <main class="pt-36 pb-20 flex-grow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             
             <!-- Title Section -->
-            <div class="text-center space-y-4">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/80 border border-purple-300 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-icons"></i> Connect Across Platforms
+            <div class="text-center space-y-4 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-300 text-xs font-extrabold uppercase tracking-widest shadow-sm">
+                    <i class="fa-solid fa-globe text-purple-500"></i> Connect Across Platforms
                 </div>
-                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
                     My Social Profiles
                 </h1>
-                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
                     A visual tour of my official accounts across developer and creator platforms.
                 </p>
             </div>
 
-            <!-- CARDS GRID (3 Columns Desktop, Perfectly Sized Frames) -->
+            <!-- CARDS GRID -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
                 
                 <!-- 1. GitHub Profile -->
-                <a href="https://github.com/Ansharahcoder" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-sky-500 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-                        <img src="./IMAGES/github.png" alt="GitHub Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-                       
+                <a href="https://github.com/Ansharahcoder" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-sky-500/50 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/github.png" alt="GitHub Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between px-2 pt-1">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">GitHub</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">@Ansharahcoder</p>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">GitHub</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">@Ansharahcoder</p>
                         </div>
-                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-slate-800 dark:text-white group-hover:bg-sky-600 group-hover:text-white transition-all shadow-md">
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-slate-800 dark:text-white group-hover:bg-sky-500 group-hover:border-sky-500 group-hover:text-white transition-all shadow-md">
                             <i class="fa-brands fa-github"></i>
                         </div>
                     </div>
                 </a>
 
                 <!-- 2. LinkedIn Profile -->
-                <a href="https://linkedin.com/in/syeda-ansharah-140984429" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-                        <img src="./IMAGES/linkedin.png" alt="LinkedIn Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-                       
+                <a href="https://linkedin.com/in/syeda-ansharah-140984429" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/linkedin.png" alt="LinkedIn Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between px-2 pt-1">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">LinkedIn</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Syeda Ansharah</p>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">LinkedIn</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Syeda Ansharah</p>
                         </div>
-                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-md">
-                            <i class="fa-brands fa-linkedin"></i>
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-blue-600 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all shadow-md">
+                            <i class="fa-brands fa-linkedin-in"></i>
                         </div>
                     </div>
                 </a>
 
                 <!-- 3. Alumni Profile -->
-               <a href="https://alumni.saylanimit.com/syeda_ansharah" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-        <img src="./IMAGES/Alumni.jpeg" alt="Alumni Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-    </div>
-    <div class="flex items-center justify-between px-2 pt-1">
-        <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Saylani Alumni</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">@syeda_ansharah</p>
-        </div>
-        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-emerald-500 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-md">
-            <i class="fa-solid fa-user-graduate"></i>
-        </div>
-    </div>
-</a>
+                <a href="https://alumni.saylanimit.com/syeda_ansharah" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-emerald-500/50 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/Alumni.jpeg" alt="Alumni Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2 pt-1">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">Alumni</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">@syeda_ansharah</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-emerald-500 group-hover:bg-emerald-600 group-hover:border-emerald-600 group-hover:text-white transition-all shadow-md">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                    </div>
+                </a>
 
                 <!-- 4. DEV Profile -->
-               <a href="https://dev.to/syedaansharah" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-black dark:hover:border-white transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-        <img src="./IMAGES/DEV.jpeg" alt="DEV Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-    </div>
-    <div class="flex items-center justify-between px-2 pt-1">
-        <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-black dark:group-hover:text-slate-300 transition-colors">DEV Community</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">@syedaansharah</p>
-        </div>
-        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-black dark:text-white group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all shadow-md">
-            <i class="fa-brands fa-dev"></i>
-        </div>
-    </div>
-</a>
+                <a href="https://dev.to/syedaansharah" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-slate-700 dark:hover:border-slate-300 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/DEV.jpeg" alt="DEV Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2 pt-1">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">DEV Community</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">@syedaansharah</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-slate-900 dark:text-white group-hover:bg-slate-900 dark:group-hover:bg-white dark:group-hover:text-slate-900 group-hover:text-white transition-all shadow-md">
+                            <i class="fa-brands fa-dev"></i>
+                        </div>
+                    </div>
+                </a>
+
                 <!-- 5. Medium Channel -->
-          <a href="https://medium.com/@ansharahcoder" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-black dark:hover:border-white transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-        <img src="./IMAGES/Medium.jpeg" alt="Medium Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-    </div>
-    <div class="flex items-center justify-between px-2 pt-1">
-        <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-black dark:group-hover:text-slate-300 transition-colors">Medium</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">@ansharahcoder</p>
-        </div>
-        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-black dark:text-white group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all shadow-md">
-            <i class="fa-brands fa-medium"></i>
-        </div>
-    </div>
-</a>
+                <a href="https://medium.com/@ansharahcoder" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-slate-700 dark:hover:border-slate-300 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/Medium.jpeg" alt="Medium Profile" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2 pt-1">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">Medium</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">@ansharahcoder</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-slate-900 dark:text-white group-hover:bg-slate-900 dark:group-hover:bg-white dark:group-hover:text-slate-900 group-hover:text-white transition-all shadow-md">
+                            <i class="fa-brands fa-medium"></i>
+                        </div>
+                    </div>
+                </a>
 
                 <!-- 6. Youtube Channel -->
-          <a href="https://youtube.com/@syedaansharahcoderofficial678" target="_blank" class="glass-card account-card p-4 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-red-500 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md">
-    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800/80 overflow-hidden relative flex items-center justify-center">
-        <img src="./IMAGES/youtube.png" alt="YouTube Channel" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300 hidden" onload="this.classList.remove('hidden')">
-    </div>
-    <div class="flex items-center justify-between px-2 pt-1">
-        <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">YouTube</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">@syedaansharahcoderofficial678</p>
-        </div>
-        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xl text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all shadow-md">
-            <i class="fa-brands fa-youtube"></i>
-        </div>
-    </div>
-</a>
+                <a href="https://youtube.com/@syedaansharahcoderofficial678" target="_blank" class="glass-card account-card p-4 rounded-3xl hover:border-red-500/50 transition-all flex flex-col justify-between space-y-4 group w-full max-w-md relative">
+                    <div class="w-full h-[450px] rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300/70 dark:border-slate-800 overflow-hidden relative">
+                        <img src="./IMAGES/youtube.png" alt="YouTube Channel" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 hidden" onload="this.classList.remove('hidden')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/60 backdrop-blur-md text-white flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between px-2 pt-1">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors">YouTube</h2>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">@syedaansharahcoderofficial678</p>
+                        </div>
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700 flex items-center justify-center text-xl text-red-500 group-hover:bg-red-600 group-hover:border-red-600 group-hover:text-white transition-all shadow-md">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                    </div>
+                </a>
 
             </div>
 
@@ -207,7 +254,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-400">
+    <footer class="py-8 border-t border-slate-200/80 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-400 glass-card">
         <p>&copy; <span id="year"></span> Ansharah Dev. All rights reserved.</p>
     </footer>
 
@@ -218,18 +265,18 @@
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         
-        // Dark Mode Logic Sync
+        // Dark Mode Logic
         themeToggleBtn.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 themeIcon.className = 'fa-solid fa-moon text-lg text-slate-700';
             } else {
                 document.documentElement.classList.add('dark');
-                themeIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-400';
             }
         });
 
-        // Mobile Drawer Toggle
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         mobileMenuBtn.addEventListener('click', () => {
